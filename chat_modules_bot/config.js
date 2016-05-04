@@ -22,10 +22,10 @@ var config = {
 config.debug = loadedConfig.debug || true;
 config.star_threshold = loadedConfig.star_threshold || 5;
 config.default_se_to_login_into = loadedConfig.default_se_to_login_into;
-if (!process.env.hasOwnProperty("EMAIL")) {
+if (!process.env.hasOwnProperty("BOT_EMAIL")) {
     throw new Error("Email config missing");
 }
-if (!process.env.hasOwnProperty("PASSWORD")) {
+if (!process.env.hasOwnProperty("BOT_PASSWORD")) {
     throw new Error("password config missing");
 }
 config.user.email = process.env.BOT_EMAIL;
