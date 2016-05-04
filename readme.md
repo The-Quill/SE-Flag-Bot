@@ -1,8 +1,8 @@
-#SE ChatModules
+#SE Flag Bot
 ---
 #What is this?
 
-A bunch of chat modules to work with SE chat and Node.
+A bot that posts flagged messages
 
 ---
 #How to get started
@@ -11,16 +11,18 @@ To get started, build the required plugins by calling:
 
      npm install
 
-Then, you can implement a `messageFormatting` object to handle the formatting events.
-
-You can see an example of this in `example-formatter.js`.
-
 #How to set up the credentials and config
 
-Then, add your username and password to the relevant strings to your environment place (`.bash_profile` on Mac/Linux, or `.zshenv` if using `zsh`) by adding something like:
+Then, add the 10k>= rep username and password to the relevant strings to your environment place (`.bash_profile` on Mac/Linux, or `.zshenv` if using `zsh`) by adding something like:
 
-    export EMAIL=you@example.com
-    export PASSWORD=password
+    export REP_USER_EMAIL=you@example.com
+    export REP_USER_PASSWORD=password
+
+and then add the bot's credentials like so:
+
+
+    export BOT_EMAIL=bot@example.com
+    export BOT_PASSWORD=password
 
 
 In the main folder, you'll find a `config-SAMPLE.json`
@@ -55,7 +57,7 @@ In the sample file, you'll find three variables that you'll need to interact wit
 
  `star_threshold` is an integer representing the amount of stars a post must get before it appears in the chat feed
 
- (defaults to 5)
+ (defaults to 9)
 
  ---
  ##`room_domains`
