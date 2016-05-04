@@ -20,6 +20,7 @@ var config = {
 };
 
 config.debug = loadedConfig.debug || true;
+config.acceptableUsers = loadedConfig.acceptableUsers || [];
 config.star_threshold = loadedConfig.star_threshold || 5;
 config.default_se_to_login_into = loadedConfig.default_se_to_login_into;
 if (!process.env.hasOwnProperty("BOT_EMAIL")) {

@@ -2,6 +2,9 @@
     "debug": false,
     "star_threshold": 9,
     "default_se_to_login_into": "codereview",
+    "acceptableUsers": [
+        "145604"
+    ],
     "room_domains": {
         "StackExchange": {
             "rooms": {

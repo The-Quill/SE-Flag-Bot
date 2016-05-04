@@ -1,5 +1,16 @@
+if (!String.prototype.startsWith) {
+    String.prototype.startsWith = function(searchString, position){
+        position = position || 0;
+        return this.substr(position, searchString.length) === searchString;
+    };
+}
+
 var botCore = require('./chat_modules_bot/core');
 var mainCore = require('./chat_modules/core');
+var commandManager = require('./commands');
+
+commandManager.setCore(mainCore);
+commandManager.setBotCore(botCore);
 
 var getAWakeupMessage = function(){
     var messages = [
@@ -53,15 +64,14 @@ var messageFormatting = {
         return "Connecting to " + event.name;
     },
 };
-mainCore.setMessageFormatting(messageFormatting);
+mainCore.set.messageFormatting(messageFormatting);
 botCore.setMessageFormatting(messageFormatting);
-mainCore.setOutputType(function(message){
-    var chatDomain = core.chatAbbreviationToFull("SE");
-    botCore.actions.send(chatDomain, 39270, message);
-});
+mainCore.set.commands(commandManager.commands);
+mainCore.set.limitedAccessCommands(commandManager.limitedAccessCommands);
 
 var botPrefix = "[ [**Marvin**](https://github.com/The-Quill/SE-Flag-Bot) ] ";
 var chatDomain = mainCore.chatAbbreviationToFull("SE");
+
 mainCore.start()
 .then(function() {
     console.log("Main core started");
@@ -70,7 +80,10 @@ mainCore.start()
 .then(function(){
     console.log("Bot core started");
     botCore.actions.send(chatDomain, 39270, botPrefix + getAWakeupMessage());
-    mainCore.setOutputType(function(message){
+    mainCore.set.say(function (message){
         botCore.actions.send(chatDomain, 39270, botPrefix + message);
+    });
+    mainCore.set.reply(function (message, event){
+        botCore.actions.send(chatDomain, 39270, ":" + event.message_id + " " + message);
     });
 });
