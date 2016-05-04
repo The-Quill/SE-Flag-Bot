@@ -59,17 +59,6 @@ var processEvent = function(event) {
     ITEMS.lastEventContent = event.content;
     event.content = convert(event.content);
     switch (event.event_type) {
-        case EVENT_TYPES.MessagePosted:
-            if (event.user_id != 153486){
-                outputType(
-                    messageFormatting.user(event) + " in " +
-                    messageFormatting.room(event) +
-                    messageFormatting.activity(" said ") +
-                    messageFormatting.content(event)
-                );
-            }
-            ITEMS.messages[event.message_id] = event.content;
-            break;
         case EVENT_TYPES.MessageStarred:
             if (!event.message_stars) {
                 delete ITEMS.stars[event.message_id];
@@ -85,14 +74,17 @@ var processEvent = function(event) {
             }
             break;
         case EVENT_TYPES.MessageFlagged:
-            ITEMS.flags[event.message_id] = event;
-            outputType(
-                messageFormatting.user(event) +
-                messageFormatting.activity("'s [message](http://chat.stackexchange.com/transcript/message/" + event.id + "#" + event.id + ") in ") +
-                messageFormatting.room(event) +
-                messageFormatting.activity(" was flagged")
-            );
-            outputType(messageFormatting.content(event));
+            if (!ITEMS.flags.hasOwnProperty(event.message_id)){
+                ITEMS.flags[event.message_id] = event;
+                outputType(
+                    messageFormatting.user(event) +
+                    messageFormatting.activity("'s [message](http://chat.stackexchange.com/transcript/message/" + event.id + "#" + event.id + ") in ") +
+                    messageFormatting.room(event) +
+                    messageFormatting.activity(" was flagged")
+                );
+                // Uncomment the line below to turn on sharing of the message
+                //outputType(messageFormatting.content(event));
+            }
             break;
     }
 };
