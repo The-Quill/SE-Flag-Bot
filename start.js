@@ -60,7 +60,7 @@ mainCore.setOutputType(function(message){
     botCore.actions.send(chatDomain, 39270, message);
 });
 
-var botPrefix = "[ [Marvin](https://github.com/The-Quill/SE-Flag-Bot) ] ";
+var botPrefix = "[ [**Marvin**](https://github.com/The-Quill/SE-Flag-Bot) ] ";
 var chatDomain = mainCore.chatAbbreviationToFull("SE");
 mainCore.start()
 .then(function() {
