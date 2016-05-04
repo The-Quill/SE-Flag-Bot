@@ -32,7 +32,8 @@
         "bluebird": "*",
         "request": "*",
         "cheerio": "*",
-        "ws": "*"
+        "ws": "*",
+        "forever": "*"
     },
     "private": true,
     "analyze": true,
