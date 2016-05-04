@@ -60,12 +60,14 @@ var processEvent = function(event) {
     event.content = convert(event.content);
     switch (event.event_type) {
         case EVENT_TYPES.MessagePosted:
-            outputType(
-                messageFormatting.room(event) +
-                messageFormatting.user(event) +
-                messageFormatting.activity(": ") +
-                messageFormatting.content(event)
-            );
+            if (event.user_id != 153486){
+                outputType(
+                    messageFormatting.user(event) + " in " +
+                    messageFormatting.room(event) +
+                    messageFormatting.activity(" said ") +
+                    messageFormatting.content(event)
+                );
+            }
             ITEMS.messages[event.message_id] = event.content;
             break;
         case EVENT_TYPES.MessageStarred:
