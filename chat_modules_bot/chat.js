@@ -59,28 +59,41 @@ var processEvent = function(event) {
     ITEMS.lastEventContent = event.content;
     event.content = convert(event.content);
     switch (event.event_type) {
+        case EVENT_TYPES.MessagePosted:
+            processCommand(event);
+            break;
+        case EVENT_TYPES.MessageEdited:
+            processCommand(event);
+            break;
         case EVENT_TYPES.MessageStarred:
             if (!event.message_stars) {
                 delete ITEMS.stars[event.message_id];
                 return;
             }
-            ITEMS.stars[event.message_id] = event.message_stars;
-            if (ITEMS.stars[event.message_id] > config.star_threshold) {
-                outputType(
+            if (ITEMS.stars.hasOwnProperty(event.message_id)){
+                return;
+            }
+            if (event.message_stars > config.star_threshold) {
+                ITEMS.stars[event.message_id] = event.message_stars;
+                say(
                     messageFormatting.room(event) +
-                    messageFormatting.activity(" highly starred message: ") +
-                    messageFormatting.content(event)
+                    messageFormatting.activity(" highly starred [message](http://chat.stackexchange.com/transcript/message/" + event.message_id + "#" + event.message_id + ") with ") +
+                    event.message_stars +
+                    " stars."
                 );
             }
             break;
         case EVENT_TYPES.MessageFlagged:
-            ITEMS.flags[event.message_id] = event;
-            outputType(
-                messageFormatting.activity("A message was flagged in ") +
-                messageFormatting.room(event) +
-                messageFormatting.activity(":")
-            );
-            outputType(messageFormatting.content(event));
+            if (!ITEMS.flags.hasOwnProperty(event.message_id)){
+                ITEMS.flags[event.message_id] = event;
+                say(
+                    messageFormatting.activity("A [message](http://chat.stackexchange.com/transcript/message/" + event.id + "#" + event.id + ") in ") +
+                    messageFormatting.room(event) +
+                    messageFormatting.activity(" was flagged.")
+                );
+                // Uncomment the line below to turn on sharing of the message
+                //say(messageFormatting.content(event));
+            }
             break;
     }
 };

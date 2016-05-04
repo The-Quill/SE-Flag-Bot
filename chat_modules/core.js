@@ -11,12 +11,12 @@ var domainVars = {
     jars: {}
 };
 var actions = {
-    join: function(domain, roomId, fkey) {
-        var fkeyProper = fkey || domainVars.fkey[domain];
+    join: function(domain, roomId) {
+        var fkey = domainVars.fkey[domain];
         return request.postAsync({
             url: "http://chat." + domain + ".com/ws-auth",
             form: {
-                fkey: fkeyProper,
+                fkey: fkey,
                 roomid: roomId
             },
             jar: domainVars.jars[domain]
@@ -232,6 +232,5 @@ module.exports = {
     actions: actions,
     chatAbbreviationToFull: chatAbbreviationToFull,
     start: start,
-    setMessageFormatting: ChatHandler.setMessageFormatting,
-    setOutputType: ChatHandler.setOutputType
+    set: ChatHandler.set,
 };
