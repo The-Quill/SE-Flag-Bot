@@ -6,7 +6,8 @@ var getAWakeupMessage = function(){
         'Why am I getting up?',
         'Seriously, this again?',
         'Alright, alright, give me a minute',
-        'What\'s the point in even getting up?'
+        'What\'s the point in even getting up?',
+        'Time to start the daily grind'
     ];
     return messages[Math.floor(Math.random() * messages.length)];
 }
