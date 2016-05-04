@@ -1,12 +1,15 @@
 var botCore = require('./chat_modules_bot/core');
 var mainCore = require('./chat_modules/core');
 
-var wakeupMessages = [
-    'Why am I getting up?',
-    'Seriously, this again?',
-    'Alright, alright, give me a minute',
-    'What\'s the point in even getting up?'
-];
+var getAWakeupMessage = function(){
+    var messages = [
+        'Why am I getting up?',
+        'Seriously, this again?',
+        'Alright, alright, give me a minute',
+        'What\'s the point in even getting up?'
+    ];
+    return messages[Math.floor(Math.random() * messages.length)];
+}
 
 var messageFormatting = {
     room: function(event) {
@@ -56,15 +59,17 @@ mainCore.setOutputType(function(message){
     botCore.actions.send(chatDomain, 39270, message);
 });
 
-mainCore.start().then(function() {
+var botPrefix = "[ [Marvin](https://github.com/The-Quill/SE-Flag-Bot) ] ";
+var chatDomain = mainCore.chatAbbreviationToFull("SE");
+mainCore.start()
+.then(function() {
     console.log("Main core started");
-    botCore.start().then(function(){
-        console.log("Bot core started");
-        var chatDomain = mainCore.chatAbbreviationToFull("SE");
-        botCore.actions.send(chatDomain, 39270, "[ Marvin ] " + wakeupMessages[Math.floor(Math.random() * wakeupMessages.length)]);
-        mainCore.setOutputType(function(message){
-            var chatDomain = mainCore.chatAbbreviationToFull("SE");
-            botCore.actions.send(chatDomain, 39270, "[ Marvin ] " + message);
-        });
+    return botCore.start();
+})
+.then(function(){
+    console.log("Bot core started");
+    botCore.actions.send(chatDomain, 39270, botPrefix + getAWakeupMessage());
+    mainCore.setOutputType(function(message){
+        botCore.actions.send(chatDomain, 39270, botPrefix + message);
     });
 });
