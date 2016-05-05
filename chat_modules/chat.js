@@ -12,7 +12,12 @@ var noFormattingLinked = function() {
 
 };
 var blacklistedUsers = config.blacklistedUsers || [];
+var acceptableUsers = config.acceptableUsers || [];
 
+
+acceptableUsers.concat([
+    //ID here with //comment with your name
+])
 var messageFormatting = {
     room: noFormattingLinked,
     user: noFormattingLinked,
@@ -89,7 +94,7 @@ var processCommand = function(event){
     var command = commands[commandName];
     var commandArgs = commandArguments.slice(1);
     if (limitedAccessCommands.hasOwnProperty(commandName)
-     && config.acceptableUsers.indexOf(String(event.user_id)) === -1){
+     && acceptableUsers.indexOf(String(event.user_id)) === -1){
         say("You're not allowed to do that.");
         return;
     }
@@ -101,7 +106,7 @@ var processCommand = function(event){
                 say(command("SE", commandArgs));
                 break;
             case "restart":
-            case "stop":
+            //case "stop":
             case "pull":
                 command(say, commandArgs);
                 break;
@@ -130,7 +135,7 @@ var processCommand = function(event){
                 break;
             case "listCommands":
                 reply(
-                    command(config.acceptableUsers.indexOf(String(event.user_id)) !== -1, commandArgs),
+                    command(acceptableUsers.indexOf(String(event.user_id)) !== -1, commandArgs),
                     event
                 );
                 break;
