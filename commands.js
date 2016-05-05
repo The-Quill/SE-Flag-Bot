@@ -36,15 +36,16 @@ var limitedAccessCommands = {
 };
 
 function alive(){
-    var responses = [
-        'Yeah',
-        '*sigh*',
-        'Can I pretend not to be?',
-        'I\'m a robot, we\'re not alive anyway'
-    ];
-    return responses.slice(sarcasmFactor)[Math.floor(
-        Math.random() * responses.length
-    )];
+    return "cats";
+    // var responses = [
+    //     'Yeah',
+    //     '*sigh*',
+    //     'Can I pretend not to be?',
+    //     'I\'m a robot, we\'re not alive anyway'
+    // ];
+    // return responses.slice(sarcasmFactor)[Math.floor(
+    //     Math.random() * responses.length
+    // )];
 }
 
 function stop(loudSpeaker){
