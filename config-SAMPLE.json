@@ -3,7 +3,8 @@
     "star_threshold": 9,
     "default_se_to_login_into": "codereview",
     "acceptableUsers": [
-        "145604"
+        "145604",
+        "175356"
     ],
     "room_domains": {
         "StackExchange": {
