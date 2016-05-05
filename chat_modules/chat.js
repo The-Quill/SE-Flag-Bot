@@ -17,6 +17,7 @@ var acceptableUsers = config.acceptableUsers || [];
 
 acceptableUsers.concat([
     //ID here with //comment with your name
+    24697 // PhiNotPi
 ])
 var messageFormatting = {
     room: noFormattingLinked,
