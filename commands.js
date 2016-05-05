@@ -76,7 +76,6 @@ function rampDownTheSarcasm(){
         return "whatever, man";
     }
 }
-
 function rampUpTheSarcasm(){
     console.log(sarcasmFactor);
     if (sarcasmFactor === 3){
@@ -151,7 +150,7 @@ function restart(loudSpeaker){
         'fine',
         'I have to come back?',
         'Can you just not please',
-        'ugh, such a pain.'
+        'ugh, such a pain'
     ];
     loudSpeaker(responses.slice(sarcasmFactor)[Math.floor(
         Math.random() * responses.length
