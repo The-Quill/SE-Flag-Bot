@@ -124,13 +124,13 @@ function help(){
     if I could be bothered."
 }
 function listCommands(canAccessLimitedCommands){
-    var availableCommands = commands;
+    var availableCommands = Object.keys(commands);
     if (!canAccessLimitedCommands){
-        availableCommands = commands.filter(function(i) {
+        availableCommands = Object.keys(commands).filter(function(i) {
             return limitedAccessCommands.hasOwnProperty(i);
         });
     }
-    return "Here's a list of commands _you_ can access: " + Object.keys(availableCommands).join(", ");
+    return "Here's a list of commands _you_ can access: " + availableCommands.join(", ");
 }
 function deleteMessage(domain, message_id){
     return "@Quill still hasn't fixed this yet. Please ping and annoy him about it"
