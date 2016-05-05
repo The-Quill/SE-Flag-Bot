@@ -83,6 +83,9 @@ mainCore.start()
     mainCore.set.say(function (message){
         botCore.actions.send(chatDomain, 39270, botPrefix + message);
     });
+    mainCore.set.noPrefixSay(function (message){
+        botCore.actions.send(chatDomain, 39270, message);
+    });
     mainCore.set.reply(function (message, event){
         botCore.actions.send(chatDomain, 39270, ":" + event.message_id + " " + message);
     });

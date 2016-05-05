@@ -53,7 +53,7 @@ var convert = function(str) {
 
 /* eslint-disable complexity, max-statements */
 var processEvent = function(event) {
-    if (event.content === ITEMS.lastEventContent) {
+    if (event.content == ITEMS.lastEventContent) {
         return false;
     }
     ITEMS.lastEventContent = event.content;

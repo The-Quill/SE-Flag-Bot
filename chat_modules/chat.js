@@ -31,6 +31,7 @@ var messageFormatting = {
     connection: noFormattingLinked
 };
 var say = function(){};
+var noPrefixSay = function(){};
 var reply = function(){};
 var commands = {};
 var limitedAccessCommands = {};
@@ -41,6 +42,9 @@ var set = {
     },
     say: function(value){
         say = value;
+    },
+    noPrefixSay: function(value){
+        noPrefixSay = value;
     },
     reply: function(value){
         reply = value;
@@ -180,17 +184,19 @@ var processEvent = function(event) {
                     messageFormatting.activity(" highly starred [message](http://chat.stackexchange.com/transcript/message/" + event.message_id + "#" + event.message_id + ") with ") +
                     event.message_stars +
                     " stars."
-                );
-                say(
-                    "http://chat.stackexchange.com/transcript/message/" + event.message_id + "#" + event.message_id
-                );
+                )
+                .then(function(){
+                    noPrefixSay(
+                        "http://chat.stackexchange.com/transcript/message/" + event.message_id + "#" + event.message_id
+                    );
+                });
             }
             break;
         case EVENT_TYPES.MessageFlagged:
             if (!ITEMS.flags.hasOwnProperty(event.message_id)){
                 ITEMS.flags[event.message_id] = event;
                 say(
-                    messageFormatting.activity("A [message](http://chat.stackexchange.com/transcript/message/" + event.id + "#" + event.id + ") in ") +
+                    messageFormatting.activity("A [message](http://chat.stackexchange.com/transcript/message/" + event.message_id + "#" + event.message_id + ") in ") +
                     messageFormatting.room(event) +
                     messageFormatting.activity(" was flagged.")
                 );

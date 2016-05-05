@@ -57,8 +57,10 @@ function stop(loudSpeaker){
     ];
     loudSpeaker(responses.slice(sarcasmFactor)[Math.floor(
         Math.random() * responses.slice(sarcasmFactor).length
-    )]);
-    forever.stop();
+    )])
+    .then(function(){
+        forever.stop();
+    });
 }
 
 function blacklist(user_id){
@@ -95,9 +97,6 @@ function join(domain, room_id){
         'It\'s just as boring here too',
         'why would you bother?'
     ];
-    console.log(responses.slice(sarcasmFactor)[Math.floor(
-        Math.random() * responses.slice(sarcasmFactor).length
-    )]);
     return responses.slice(sarcasmFactor)[Math.floor(
         Math.random() * responses.slice(sarcasmFactor).length
     )];
@@ -155,8 +154,10 @@ function restart(loudSpeaker){
     ];
     loudSpeaker(responses.slice(sarcasmFactor)[Math.floor(
         Math.random() * responses.slice(sarcasmFactor).length
-    )]);
-    forever.restart();
+    )])
+    .then(function(){
+        forever.restart();
+    });
 }
 function pull(loudSpeaker){
     console.log("doing a git pull");
@@ -165,12 +166,11 @@ function pull(loudSpeaker){
             loudSpeaker(stdout);
             return;
         }
-        loudSpeaker("Fetching origin copy and then restarting");
         if (stderr != "") console.log("stderr: " + stderr);
-        restart(loudSpeaker);
-        if (error !== null) {
-            console.log("exec error: " + error);
-        }
+        loudSpeaker("Fetching origin copy and then restarting")
+        .then(function(){
+            restart(loudSpeaker);
+        });
     });
 
 }
