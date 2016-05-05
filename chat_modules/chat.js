@@ -9,8 +9,9 @@ var ITEMS = {
 };
 var noFormattingLinked = function() {
     throw new Error("There is no formatting linked.");
+
 };
-var blacklistedUsers = config.blacklistedUsers;
+var blacklistedUsers = config.blacklistedUsers || [];
 
 var messageFormatting = {
     room: noFormattingLinked,
@@ -76,7 +77,7 @@ var processCommand = function(event){
     if (!event.content.startsWith("@Marvin ") && !event.content.startsWith("!!/")){
         return;
     }
-    if (config.blacklistedUsers.indexOf(String(event.user_id)) !== -1){
+    if (blacklistedUsers.indexOf(String(event.user_id)) !== -1){
         reply("You're not allowed to do that", event);
         return;
     }
