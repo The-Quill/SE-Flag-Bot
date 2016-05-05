@@ -127,7 +127,7 @@ function listCommands(canAccessLimitedCommands){
     var availableCommands = commands;
     if (!canAccessLimitedCommands){
         availableCommands = commands.filter(function(i) {
-            return limitedAccessCommands.indexOf(i) < 0;
+            return limitedAccessCommands.hasOwnProperty(i);
         });
     }
     return "Here's a list of commands _you_ can access: " + Object.keys(availableCommands).join(", ");
