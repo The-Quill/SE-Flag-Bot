@@ -4,7 +4,8 @@
     "default_se_to_login_into": "codereview",
     "acceptableUsers": [
         "145604",
-        "175356"
+        "175356",
+        "116494"
     ],
     "room_domains": {
         "StackExchange": {
