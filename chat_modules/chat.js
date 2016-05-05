@@ -15,7 +15,7 @@ var blacklistedUsers = config.blacklistedUsers || [];
 var acceptableUsers = config.acceptableUsers || [];
 
 
-acceptableUsers.concat([
+acceptableUsers = acceptableUsers.concat([
     //ID here with //comment with your name
     24697 // PhiNotPi
 ])
