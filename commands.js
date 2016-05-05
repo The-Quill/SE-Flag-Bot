@@ -27,10 +27,11 @@ var commands = {
 var limitedAccessCommands = {
     stop: stop,
     restart: restart,
+    pull: pull,
+    delete: delete,
     rampUpTheSarcasm: rampUpTheSarcasm,
     rampDownTheSarcasm: rampDownTheSarcasm,
     leave: leave,
-    join: join,
     blacklist: blacklist,
     removeBlacklist: removeBlacklist,
 };
