@@ -43,7 +43,7 @@ function alive(){
         'I\'m a robot, we\'re not alive anyway'
     ];
     return responses.slice(sarcasmFactor)[Math.floor(
-        Math.random() * responses.length
+        Math.random() * responses.slice(sarcasmFactor).length
     )];
 }
 
@@ -55,7 +55,7 @@ function stop(loudSpeaker){
         'About time'
     ];
     loudSpeaker(responses.slice(sarcasmFactor)[Math.floor(
-        Math.random() * responses.length
+        Math.random() * responses.slice(sarcasmFactor).length
     )]);
     forever.stop();
 }
@@ -95,10 +95,10 @@ function join(domain, room_id){
         'why would you bother?'
     ];
     console.log(responses.slice(sarcasmFactor)[Math.floor(
-        Math.random() * responses.length
+        Math.random() * responses.slice(sarcasmFactor).length
     )]);
     return responses.slice(sarcasmFactor)[Math.floor(
-        Math.random() * responses.length
+        Math.random() * responses.slice(sarcasmFactor).length
     )];
 }
 function leave(domain, room_id){
@@ -111,10 +111,10 @@ function leave(domain, room_id){
     ];
     console.log(sarcasmFactor);
     console.log(responses.slice(sarcasmFactor)[Math.floor(
-        Math.random() * responses.length
+        Math.random() * responses.slice(sarcasmFactor).length
     )]);
     return responses.slice(sarcasmFactor)[Math.floor(
-        Math.random() * responses.length
+        Math.random() * responses.slice(sarcasmFactor).length
     )];
 }
 function help(){
@@ -153,7 +153,7 @@ function restart(loudSpeaker){
         'ugh, such a pain'
     ];
     loudSpeaker(responses.slice(sarcasmFactor)[Math.floor(
-        Math.random() * responses.length
+        Math.random() * responses.slice(sarcasmFactor).length
     )]);
     forever.restart();
 }
