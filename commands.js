@@ -28,7 +28,7 @@ var limitedAccessCommands = {
     stop: stop,
     restart: restart,
     pull: pull,
-    delete: delete,
+    delete: deleteMessage,
     rampUpTheSarcasm: rampUpTheSarcasm,
     rampDownTheSarcasm: rampDownTheSarcasm,
     leave: leave,
