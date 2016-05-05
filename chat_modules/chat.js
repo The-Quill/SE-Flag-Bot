@@ -179,6 +179,9 @@ var processEvent = function(event) {
                     event.message_stars +
                     " stars."
                 );
+                say(
+                    "http://chat.stackexchange.com/transcript/message/" + event.message_id + "#" + event.message_id
+                );
             }
             break;
         case EVENT_TYPES.MessageFlagged:
