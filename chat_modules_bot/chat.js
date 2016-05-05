@@ -18,12 +18,12 @@ var messageFormatting = {
     messageId: noFormattingLinked,
     connection: noFormattingLinked
 };
-var outputType = function(){};
+var say = function(){};
 var setMessageFormatting = function(formatting) {
     messageFormatting = formatting;
 };
-var setOutputType = function(callback){
-    outputType = callback;
+var setOutputType = function(value){
+    say = value;
 }
 var EVENT_TYPES = {
     MessagePosted: 1,
@@ -59,12 +59,6 @@ var processEvent = function(event) {
     ITEMS.lastEventContent = event.content;
     event.content = convert(event.content);
     switch (event.event_type) {
-        case EVENT_TYPES.MessagePosted:
-            processCommand(event);
-            break;
-        case EVENT_TYPES.MessageEdited:
-            processCommand(event);
-            break;
         case EVENT_TYPES.MessageStarred:
             if (!event.message_stars) {
                 delete ITEMS.stars[event.message_id];

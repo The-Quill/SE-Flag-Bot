@@ -95,14 +95,13 @@ var processCommand = function(event){
     if (commands.hasOwnProperty(commandName)){
         switch (commandName){
             case "delete":
-                say(command("SE", commandArgs));
-                break;
             case "join":
             case "leave":
                 say(command("SE", commandArgs));
                 break;
             case "restart":
             case "stop":
+            case "pull":
                 command(say, commandArgs);
                 break;
             case "blacklist":

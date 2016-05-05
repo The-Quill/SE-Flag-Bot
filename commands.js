@@ -158,8 +158,21 @@ function restart(loudSpeaker){
     )]);
     forever.restart();
 }
-function pull(){
-    return "I wish I could do this. ;-;";
+function pull(loudSpeaker){
+    console.log("doing a git pull");
+    require('child_process').exec('git pull', function(error, stdout, stderr) {
+        if (stdout.replace("\n", "") == "Already up-to-date."){
+            loudSpeaker(stdout);
+            return;
+        }
+        loudSpeaker("Fetching origin copy and then restarting");
+        if (stderr != "") console.log("stderr: " + stderr);
+        restart(loudSpeaker);
+        if (error !== null) {
+            console.log("exec error: " + error);
+        }
+    });
+
 }
 
 module.exports = {
