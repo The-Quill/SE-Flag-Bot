@@ -13,8 +13,6 @@ var domainVars = {
 var actions = {
     join: function(domain, roomId) {
         var fkey = domainVars.fkey[domain];
-        console.log(domainVars.fkey[domain]);
-        console.log(domainVars.jars[domain]);
         return request.postAsync({
             url: "http://chat." + domain + ".com/ws-auth",
             form: {

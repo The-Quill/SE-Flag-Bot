@@ -1,9 +1,18 @@
 "use strict";
 
 /* eslint-disable camelcase, no-process-env */
-var loadedConfig = require("../config.json");
-if (!loadedConfig) {
-    loadedConfig = require("../config-SAMPLE.json");
+var loadedConfig;
+try {
+    require.resolve("../config.json");
+    loadedConfig = require("../config.json");
+} catch(e) {
+    try {
+        require.resolve("../config-SAMPLE.json");
+        loadedConfig = require("../config-SAMPLE.json");
+    } catch(e){
+        console.error("Config is not found");
+        process.exit(e.code);
+    }
 }
 if (!loadedConfig) {
     throw new Error("No config file found");
