@@ -15,7 +15,7 @@
   },
   "scripts": {
     "test": "node_modules/.bin/istanbul cover _mocha",
-    "test_build": "node_modules/.bin/istanbul cover grunt",
+    "test_build": "node_modules/.bin/istanbul cover _grunt",
     "build": "grunt"
   },
   "bugs": {
