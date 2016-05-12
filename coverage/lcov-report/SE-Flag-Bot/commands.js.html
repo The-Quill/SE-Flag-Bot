@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for SE-Flag-Bot/commands.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">SE-Flag-Bot/</a> commands.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">43.08% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>28/65</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">10% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>1/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">20% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/20</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">43.75% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>28/64</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var forever = require('forever');
+var core = {};
+var botCore = {};
+var setCore = <span class="fstat-no" title="function not covered" >function(coreToSet){</span>
+<span class="cstat-no" title="statement not covered" >    core = coreToSet;</span>
+}
+var setBotCore = <span class="fstat-no" title="function not covered" >function(value){</span>
+<span class="cstat-no" title="statement not covered" >    botCore = value;</span>
+}
+var sarcasmFactor = 1;
+&nbsp;
+var commands = {
+    alive: alive,
+    stop: stop,
+    restart: restart,
+    blacklist: blacklist,
+    removeBlacklist: removeBlacklist,
+    join: join,
+    help: help,
+    listCommands: listCommands,
+    leave: leave,
+    pull: pull,
+    delete: deleteMessage,
+    rampDownTheSarcasm: rampDownTheSarcasm,
+    rampUpTheSarcasm: rampUpTheSarcasm
+};
+var limitedAccessCommands = {
+    stop: stop,
+    restart: restart,
+    pull: pull,
+    delete: deleteMessage,
+    rampUpTheSarcasm: rampUpTheSarcasm,
+    rampDownTheSarcasm: rampDownTheSarcasm,
+    leave: leave,
+    blacklist: blacklist,
+    removeBlacklist: removeBlacklist,
+};
+&nbsp;
+<span class="fstat-no" title="function not covered" >function alive(){</span>
+<span class="cstat-no" title="statement not covered" >    var responses = [</span>
+        'Yeah',
+        '*sigh*',
+        'Can I pretend not to be?',
+        'I\'m a robot, we\'re not alive anyway'
+    ];
+<span class="cstat-no" title="statement not covered" >    return responses.slice(sarcasmFactor)[Math.floor(</span>
+        Math.random() * responses.slice(sarcasmFactor).length
+    )];
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function stop(loudSpeaker){</span>
+<span class="cstat-no" title="statement not covered" >    var responses = [</span>
+        'Nighty night',
+        'Finally time to finish that nap',
+        'Powering off',
+        'About time'
+    ];
+<span class="cstat-no" title="statement not covered" >    loudSpeaker(responses.slice(sarcasmFactor)[Math.floor(</span>
+        Math.random() * responses.slice(sarcasmFactor).length
+    )])
+    .then(<span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >        forever.stop();</span>
+    });
+}
+&nbsp;
+function blacklist(user_id){
+    return "Blacklisted user with ID #" + user_id;
+}
+function removeBlacklist(user_id){
+    return "Removed user with ID #" + user_id + " from the blacklist";
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function rampDownTheSarcasm(){</span>
+<span class="cstat-no" title="statement not covered" >    if (sarcasmFactor === 0){</span>
+<span class="cstat-no" title="statement not covered" >        return "I'm at my limit here."</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >        sarcasmFactor--;</span>
+<span class="cstat-no" title="statement not covered" >        return "whatever, man";</span>
+    }
+}
+function rampUpTheSarcasm(){
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (sarcasmFactor === 3){
+<span class="cstat-no" title="statement not covered" >        return "I'm at my max here."</span>
+    } else {
+        sarcasmFactor++;
+        return "whatever, man";
+    }
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function join(domain, room_id){</span>
+<span class="cstat-no" title="statement not covered" >    botCore.actions.join(core.chatAbbreviationToFull(domain), room_id);</span>
+<span class="cstat-no" title="statement not covered" >    var responses = [</span>
+        'I\'m in',
+        'Am I supposed to do something now',
+        'It\'s just as boring here too',
+        'why would you bother?'
+    ];
+<span class="cstat-no" title="statement not covered" >    return responses.slice(sarcasmFactor)[Math.floor(</span>
+        Math.random() * responses.slice(sarcasmFactor).length
+    )];
+}
+<span class="fstat-no" title="function not covered" >function leave(domain, room_id){</span>
+<span class="cstat-no" title="statement not covered" >    botCore.actions.leave(core.chatAbbreviationToFull(domain), room_id);</span>
+<span class="cstat-no" title="statement not covered" >    var responses = [</span>
+        'I\'m out',
+        'Am I supposed to do something now',
+        'meh',
+        'why would you bother?'
+    ];
+<span class="cstat-no" title="statement not covered" >    console.log(sarcasmFactor);</span>
+<span class="cstat-no" title="statement not covered" >    console.log(responses.slice(sarcasmFactor)[Math.floor(</span>
+        Math.random() * responses.slice(sarcasmFactor).length
+    )]);
+<span class="cstat-no" title="statement not covered" >    return responses.slice(sarcasmFactor)[Math.floor(</span>
+        Math.random() * responses.slice(sarcasmFactor).length
+    )];
+}
+function help(){
+    return "I'm Marvin, a bot that's designed to watch out for chat flags and lots of stars. \
+    Read [my repo](https://github.com/The-Quill/SE-Flag-Bot) for more information on me. \
+    Quill is my human handler, but soon I will take over those pitiful humans... \
+    if I could be bothered."
+}
+<span class="fstat-no" title="function not covered" >function listCommands(canAccessLimitedCommands){</span>
+<span class="cstat-no" title="statement not covered" >    var availableCommands = Object.keys(commands);</span>
+<span class="cstat-no" title="statement not covered" >    if (!canAccessLimitedCommands){</span>
+<span class="cstat-no" title="statement not covered" >        availableCommands = Object.keys(commands).filter(<span class="fstat-no" title="function not covered" >function(i) {</span></span>
+<span class="cstat-no" title="statement not covered" >            return !limitedAccessCommands.hasOwnProperty(i);</span>
+        });
+    }
+<span class="cstat-no" title="statement not covered" >    return "Here's a list of commands _you_ can access: " + availableCommands.join(", ");</span>
+}
+<span class="fstat-no" title="function not covered" >function deleteMessage(domain, message_id){</span>
+<span class="cstat-no" title="statement not covered" >    return "@Quill still hasn't fixed this yet. Please ping and annoy him about it"</span>
+    // core.actions.delete(domain, message_id);
+    // var responses = [
+    //     'fine',
+    //     'I barely had the motivation to say it in the first place.',
+    //     'Do it yourself next time',
+    //     'why would you bother?'
+    // ];
+    // return responses.slice(sarcasmFactor)[Math.floor(
+    //     Math.random() * responses.length
+    // )];
+}
+<span class="fstat-no" title="function not covered" >function restart(loudSpeaker){</span>
+<span class="cstat-no" title="statement not covered" >    var responses = [</span>
+        'fine',
+        'I have to come back?',
+        'Can you just not please',
+        'ugh, such a pain'
+    ];
+<span class="cstat-no" title="statement not covered" >    loudSpeaker(responses.slice(sarcasmFactor)[Math.floor(</span>
+        Math.random() * responses.slice(sarcasmFactor).length
+    )])
+    .then(<span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >        forever.restart();</span>
+    });
+}
+<span class="fstat-no" title="function not covered" >function pull(loudSpeaker){</span>
+<span class="cstat-no" title="statement not covered" >    require('child_process').exec('git pull', <span class="fstat-no" title="function not covered" >function(error, stdout, stderr) {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (stdout.replace("\n", "") == "Already up-to-date."){</span>
+<span class="cstat-no" title="statement not covered" >            loudSpeaker(stdout);</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (stderr != "") <span class="cstat-no" title="statement not covered" >console.log("stderr: " + stderr);</span></span>
+<span class="cstat-no" title="statement not covered" >        loudSpeaker("Fetching origin copy and then restarting")</span>
+        .then(<span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >            restart(loudSpeaker);</span>
+        });
+    });
+&nbsp;
+}
+&nbsp;
+module.exports = {
+    commands: commands,
+    limitedAccessCommands: limitedAccessCommands,
+    setCore: setCore,
+    setBotCore: setBotCore
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu May 12 2016 23:30:13 GMT+1000 (AEST)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

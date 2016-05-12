@@ -13,10 +13,12 @@ var domainVars = {
 var actions = {
     join: function(domain, roomId) {
         var fkey = domainVars.fkey[domain];
+        console.log(domainVars.fkey[domain]);
+        console.log(domainVars.jars[domain]);
         return request.postAsync({
             url: "http://chat." + domain + ".com/ws-auth",
             form: {
-                fkey: fkey,
+                fkey: domainVars.fkey[domain],
                 roomid: roomId
             },
             jar: domainVars.jars[domain]
@@ -166,10 +168,16 @@ var connectDomainRooms = function(domainMultiCase, initialRoom, rooms) {
                 throw new Error("There was an issue with the response. Check your config is correct.");
             }
             url = JSON.parse(secondLevelResponse.body).url;
-            Object.keys(rooms).forEach(function(roomName) {
+            var promises = [].concat(Object.keys(rooms)).map(function(roomName) {
                 var room = rooms[roomName];
                 //console.log("Connected to " + room.name);
-                actions.join(domain, room.room_id, fkey);
+                return new Promise(
+                    function(){
+                        actions.join(domain, room.room_id, fkey);
+                    }
+                )
+                .then()
+                .error();
             });
             //console.log("Connected to " + initialRoom.name);
             return request.postAsync({
