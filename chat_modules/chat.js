@@ -126,7 +126,10 @@ var processCommand = function(event){
                 break;
             case "blacklist":
                 if (blacklistedUsers.indexOf(commandArgs[0]) > -1){
-                    reply("They're already blacklisted.", event);
+                    return reply("They're already blacklisted.", event);
+                }
+                if (acceptableUsers.indexOf(String(commandArgs[0])) !== -1){
+                    return reply("They're a special user... don't even try it, sassy pants.")
                 }
                 blacklistedUsers.push(commandArgs[0]);
                 return command(commandArgs);

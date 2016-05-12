@@ -3,6 +3,9 @@
 /* eslint-disable camelcase, no-process-env */
 var loadedConfig = require("../config.json");
 if (!loadedConfig) {
+    loadedConfig = require("../config-SAMPLE.json");
+}
+if (!loadedConfig) {
     throw new Error("No config file found");
 }
 if (!loadedConfig.hasOwnProperty("room_domains") || typeof loadedConfig.room_domains !== "object") {
