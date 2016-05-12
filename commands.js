@@ -64,10 +64,10 @@ function stop(loudSpeaker){
 }
 
 function blacklist(user_id){
-    return "Blacklisted user with ID #" + user_id;
+    return "Blacklisted [user with ID #" + user_id + "](http://chat.stackexchange.com/users/" + user_id + ")";
 }
 function removeBlacklist(user_id){
-    return "Removed user with ID #" + user_id + " from the blacklist";
+    return "Removed [user with ID #" + user_id + "](http://chat.stackexchange.com/users/" + user_id + ") from the blacklist";
 }
 
 function rampDownTheSarcasm(){
