@@ -77,18 +77,6 @@ var processEvent = function(event) {
                 );
             }
             break;
-        case EVENT_TYPES.MessageFlagged:
-            if (!ITEMS.flags.hasOwnProperty(event.message_id)){
-                ITEMS.flags[event.message_id] = event;
-                say(
-                    messageFormatting.activity("A [message](http://chat.stackexchange.com/transcript/message/" + event.id + "#" + event.id + ") in ") +
-                    messageFormatting.room(event) +
-                    messageFormatting.activity(" was flagged.")
-                );
-                // Uncomment the line below to turn on sharing of the message
-                //say(messageFormatting.content(event));
-            }
-            break;
     }
 };
 

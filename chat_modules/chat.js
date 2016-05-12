@@ -1,6 +1,13 @@
 "use strict";
 var config = require("./config");
 
+if (!String.prototype.startsWith) {
+    String.prototype.startsWith = function(searchString, position){
+        position = position || 0;
+        return this.substr(position, searchString.length) === searchString;
+    };
+}
+
 var ITEMS = {
     messages: {},
     stars: {},
@@ -14,13 +21,13 @@ var noFormattingLinked = function() {
 var blacklistedUsers = config.blacklistedUsers || [];
 var acceptableUsers = config.acceptableUsers || [];
 
-
 acceptableUsers = acceptableUsers.concat([
     //ID here with //comment with your name
+    '145604', // Quill
     '24697', // PhiNotPi,
     '175356', // Downgoat
     '116494' // Conor O Brien
-])
+]);
 var messageFormatting = {
     room: noFormattingLinked,
     user: noFormattingLinked,
@@ -83,75 +90,75 @@ var convert = function(str) {
 };
 
 var processCommand = function(event){
-    if (event.room_id != 39270){
-        return;
+    if (String(event.room_id) != "39270"){
+        return false;
     }
     if (!event.content.startsWith("@Marvin ") && !event.content.startsWith("!!/")){
-        return;
+        return false;
     }
     if (blacklistedUsers.indexOf(String(event.user_id)) !== -1){
-        reply("You're not allowed to do that", event);
-        return;
+        return reply("I can't let you do that.", event);
     }
     var commandArguments = event.content
         .replace("@Marvin ", "")
         .replace("!!/", "")
         .split(" ");
     var commandName = commandArguments[0];
+    if (commandName == ''){
+        return reply("You need to actually type a command...");
+    }
     var command = commands[commandName];
     var commandArgs = commandArguments.slice(1);
-    if (limitedAccessCommands.hasOwnProperty(commandName)
-     && acceptableUsers.indexOf(String(event.user_id)) === -1){
-        say("You're not allowed to do that.");
-        return;
+    if (limitedAccessCommands.hasOwnProperty(commandName) && acceptableUsers.indexOf(String(event.user_id)) === -1){
+        return reply("I can't let you do that.", event);
     }
     if (commands.hasOwnProperty(commandName)){
         switch (commandName){
             case "delete":
             case "join":
             case "leave":
-                say(command("SE", commandArgs));
+                return say(command("SE", commandArgs));
                 break;
             case "restart":
             //case "stop":
             case "pull":
-                command(say, commandArgs);
+                return command(say, commandArgs);
                 break;
             case "blacklist":
                 if (blacklistedUsers.indexOf(commandArgs[0]) > -1){
                     reply("They're already blacklisted.", event);
                 }
                 blacklistedUsers.push(commandArgs[0]);
-                command(commandArgs);
+                return command(commandArgs);
                 break;
             case "removeBlacklist":
                 if (blacklistedUsers.indexOf(commandArgs[0]) === -1){
                     reply("They're not blacklisted.", event);
                 }
                 blacklistedUsers.splice(blacklistedUsers.indexOf(commandArgs[0]), 1);
-                command(commandArgs);
+                return command(commandArgs);
                 break;
             case "alive":
             case "rampDownTheSarcasm":
             case "rampUpTheSarcasm":
             case "help":
-                reply(
+                return reply(
                     command(commandArgs),
                     event
                 );
                 break;
             case "listCommands":
-                reply(
+                return reply(
                     command(acceptableUsers.indexOf(String(event.user_id)) !== -1, commandArgs),
                     event
                 );
                 break;
             default:
-                say(command(commandArgs))
+                return say(command(commandArgs))
                 break;
         }
     } else {
-        say("Command " + commandName + " not recognised.")
+        return say("Command " + commandName + " not recognised.")
     }
 }
 
@@ -164,10 +171,10 @@ var processEvent = function(event) {
     event.content = convert(event.content);
     switch (event.event_type) {
         case EVENT_TYPES.MessagePosted:
-            processCommand(event);
+            return processCommand(event);
             break;
         case EVENT_TYPES.MessageEdited:
-            processCommand(event);
+            return processCommand(event);
             break;
         case EVENT_TYPES.MessageStarred:
             if (!event.message_stars) {
@@ -179,7 +186,7 @@ var processEvent = function(event) {
             }
             if (event.message_stars > config.star_threshold) {
                 ITEMS.stars[event.message_id] = event.message_stars;
-                say(
+                return say(
                     messageFormatting.room(event) +
                     messageFormatting.activity(" highly starred [message](http://chat.stackexchange.com/transcript/message/" + event.message_id + "#" + event.message_id + ") with ") +
                     event.message_stars +
@@ -195,7 +202,7 @@ var processEvent = function(event) {
         case EVENT_TYPES.MessageFlagged:
             if (!ITEMS.flags.hasOwnProperty(event.message_id)){
                 ITEMS.flags[event.message_id] = event;
-                say(
+                return say(
                     messageFormatting.activity("A [message](http://chat.stackexchange.com/transcript/message/" + event.message_id + "#" + event.message_id + ") in ") +
                     messageFormatting.room(event) +
                     messageFormatting.activity(" was flagged.")
@@ -203,6 +210,9 @@ var processEvent = function(event) {
                 // Uncomment the line below to turn on sharing of the message
                 //say(messageFormatting.content(event));
             }
+            break;
+        default:
+            return false;
             break;
     }
 };

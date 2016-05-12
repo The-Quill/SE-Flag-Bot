@@ -1,10 +1,3 @@
-if (!String.prototype.startsWith) {
-    String.prototype.startsWith = function(searchString, position){
-        position = position || 0;
-        return this.substr(position, searchString.length) === searchString;
-    };
-}
-
 var botCore = require('./chat_modules_bot/core');
 var mainCore = require('./chat_modules/core');
 var commandManager = require('./commands');
@@ -21,7 +14,7 @@ var getAWakeupMessage = function(){
         'Time to start the daily grind'
     ];
     return messages[Math.floor(Math.random() * messages.length)];
-}
+};
 
 var messageFormatting = {
     room: function(event) {

@@ -11,12 +11,11 @@ var domainVars = {
     jars: {}
 };
 var actions = {
-    join: function(domain, roomId, fkey) {
-        var fkeyProper = fkey || domainVars.fkey[domain];
+    join: function(domain, roomId) {
         return request.postAsync({
             url: "http://chat." + domain + ".com/ws-auth",
             form: {
-                fkey: fkeyProper,
+                fkey: domainVars.fkey[domain],
                 roomid: roomId
             },
             jar: domainVars.jars[domain]
@@ -27,16 +26,15 @@ var actions = {
             console.log("You're missing a part of that argument");
             return;
         }
-        var fkey = domainVars.fkey[domain];
         return request.postAsync({
             url: "http://chat." + domain + ".com/chats/leave/" + roomId,
             form: {
-                fkey: fkey
+                fkey: domainVars.fkey[domain]
             },
             jar: domainVars.jars[domain]
         });
     },
-    send: function(domain, roomId, text, prefix) {
+    send: function(domain, roomId, text) {
         if (!domain || !roomId || !text) {
             console.log("You're missing a part of that command");
             return;
@@ -45,7 +43,7 @@ var actions = {
             url: "http://chat." + domain + ".com/chats/" + roomId + "/messages/new",
             form: {
                 fkey: domainVars.fkey[domain],
-                text: prefix ? prefix + " " + text : text
+                text: text
             },
             jar: domainVars.jars[domain]
         });

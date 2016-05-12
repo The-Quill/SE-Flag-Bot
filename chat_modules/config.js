@@ -21,7 +21,8 @@ var config = {
 
 config.debug = loadedConfig.debug || false;
 config.acceptableUsers = loadedConfig.acceptableUsers || [];
-config.blacklistedUsers = loadedConfig.blacklistedUsers || [];
+config.blacklistedUsers = ['-99'].concat(loadedConfig.blacklistedUsers || []);
+
 config.star_threshold = loadedConfig.star_threshold || 5;
 config.default_se_to_login_into = loadedConfig.default_se_to_login_into;
 if (!process.env.hasOwnProperty("REP_USER_EMAIL")) {
