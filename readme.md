@@ -1,17 +1,18 @@
 #SE Flag Bot
----
-#What is this?
+
+
+##What is this?
 
 A bot that posts flagged messages
 
 ---
-#How to get started
+##How to get started
 
 To get started, build the required plugins by calling:
 
      npm install
 
-#How to set up the credentials and config
+##How to set up the credentials and config
 
 Then, add the 10k>= rep username and password to the relevant strings to your environment place (`.bash_profile` on Mac/Linux, or `.zshenv` if using `zsh`) by adding something like:
 
@@ -33,7 +34,7 @@ Navigate to the folder in Terminal/CMD, and call
 
     node start.js
 
-##config
+###config
 
 In the main folder, you'll find a `config-SAMPLE.json`
 
@@ -46,21 +47,21 @@ In the sample file, you'll find three variables that you'll need to interact wit
  - `star_threshold`
  - `room_domains`
 
- ##`debug`
+ ####`debug`
 
  `debug` is a boolean that represents whether you want system messages, (such as join responses, connection losses) to appear alongside the chat events in the main feed.
 
  (defaults to `false`)
 
  ---
- ##`star_threshold`
+ ####`star_threshold`
 
  `star_threshold` is an integer representing the amount of stars a post must get before it appears in the chat feed
 
  (defaults to 9)
 
  ---
- ##`room_domains`
+ ####`room_domains`
 
  This variable is a little more complicated.
 
@@ -98,7 +99,7 @@ Here is a sample config of chat.meta.stackexchange.com, where you connect to Tav
 ```
 
 ---
-#What you need to do to your SE account before you can use this:
+##What you need to do to your SE account before you can use this:
 
  - Make sure you have an SE, SO and MSE account with the minimum rep to talk in chat (15).
 
@@ -109,6 +110,6 @@ Here is a sample config of chat.meta.stackexchange.com, where you connect to Tav
 There is an error message for this, but I'm still going to say it anyway.
 
 ---
-#License
+##License
 
 This code is licensed under the MIT license.
