@@ -1,42 +1,53 @@
 {
-    "name": "SE-Flag-Bot",
-    "version": "1.5.0",
-    "description": "A Node.JS flag bot for SE",
-    "author": "Quill <seriouslyquill@gmail.com>",
-    "contributors": [
-        {
-            "name": "Quill",
-            "email": "seriouslyquill@gmail.com"
-        }
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/The-Quill/SE-Flag-Bot"
-    },
-    "scripts": {
-        "start": "node ws.js",
-        "predeploy": "echo im about to deploy",
-        "postdeploy": "echo ive deployed"
-    },
-    "bugs": {
-        "url": "https://github.com/The-Quill/SE-Flag-Bot/issues"
-    },
-    "keywords": [
-        "stackexchange",
-        "chatbot",
-        "sockets",
-        "chat",
-        "magic"
-    ],
-    "dependencies": {
-        "bluebird": "*",
-        "request": "*",
-        "cheerio": "*",
-        "ws": "*",
-        "forever": "*"
-    },
-    "private": true,
-    "analyze": true,
-    "preferGlobal": true,
-    "license": "MIT"
+  "name": "SE-Flag-Bot",
+  "version": "1.5.0",
+  "description": "A Node.JS flag bot for SE",
+  "author": "Quill <seriouslyquill@gmail.com>",
+  "contributors": [
+    {
+      "name": "Quill",
+      "email": "seriouslyquill@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/The-Quill/SE-Flag-Bot"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/istanbul cover _mocha",
+    "test_build": "node_modules/.bin/istanbul cover grunt",
+    "build": "grunt"
+  },
+  "bugs": {
+    "url": "https://github.com/The-Quill/SE-Flag-Bot/issues"
+  },
+  "keywords": [
+    "stackexchange",
+    "chatbot",
+    "sockets",
+    "chat",
+    "magic"
+  ],
+  "dependencies": {
+    "bluebird": "*",
+    "request": "*",
+    "cheerio": "*",
+    "ws": "*",
+    "forever": "*"
+  },
+  "devDependencies": {
+    "chai": "~1.8.1",
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-nodeunit": "^1.0.0",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-mocha": "~0.4.6",
+    "istanbul": "^0.4.3",
+    "mocha": "~1.14.0"
+  },
+  "private": true,
+  "analyze": true,
+  "preferGlobal": true,
+  "license": "MIT"
 }
