@@ -51,7 +51,11 @@ function alive(){
 function listFlagCount(FLAGS){
     var roomCount = {};
     Object.keys(FLAGS).forEach(function(flag){
-        roomCount.hasOwnProperty(flag.room_name) ? roomCount[flag.room_name]++ : roomCount[flag.room_name] = 0;
+        if (roomCount.hasOwnProperty(flag.room_name)){
+            roomCount[flag.room_name]++;
+        } else {
+            roomCount[flag.room_name] = 0;
+        }
     });
     return Object.keys(roomCount).map(function(room_name){
         return room_name + " had " + roomCount[room_name] + " flags";
