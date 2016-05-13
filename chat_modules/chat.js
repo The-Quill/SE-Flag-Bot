@@ -155,9 +155,13 @@ var processCommand = function(event){
                     event
                 );
                 break;
+            case "listFlagCount":
+                return say(command(ITEMS.flags, commandArgs));
+                break;
             default:
                 return say(command(commandArgs))
                 break;
+
         }
     } else {
         return say("Command " + commandName + " not recognised.")
@@ -204,6 +208,7 @@ var processEvent = function(event) {
         case EVENT_TYPES.MessageFlagged:
             if (!ITEMS.flags.hasOwnProperty(event.message_id)){
                 ITEMS.flags[event.message_id] = event;
+                ITEMS.flags[event.message_id].site = "SE";
                 return say(
                     messageFormatting.activity("A [message](http://chat.stackexchange.com/transcript/message/" + event.message_id + "#" + event.message_id + ") in ") +
                     messageFormatting.room(event) +

@@ -22,7 +22,8 @@ var commands = {
     pull: pull,
     delete: deleteMessage,
     rampDownTheSarcasm: rampDownTheSarcasm,
-    rampUpTheSarcasm: rampUpTheSarcasm
+    rampUpTheSarcasm: rampUpTheSarcasm,
+    listFlagCount: listFlagCount
 };
 var limitedAccessCommands = {
     stop: stop,
@@ -33,7 +34,7 @@ var limitedAccessCommands = {
     rampDownTheSarcasm: rampDownTheSarcasm,
     leave: leave,
     blacklist: blacklist,
-    removeBlacklist: removeBlacklist,
+    removeBlacklist: removeBlacklist
 };
 
 function alive(){
@@ -46,6 +47,10 @@ function alive(){
     return responses.slice(sarcasmFactor)[Math.floor(
         Math.random() * responses.slice(sarcasmFactor).length
     )];
+}
+function listFlagCount(FLAGS){
+    console.log(FLAGS);
+    return "Not implemented yet."
 }
 
 function stop(loudSpeaker){
