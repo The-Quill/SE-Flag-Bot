@@ -29,11 +29,11 @@
     "magic"
   ],
   "dependencies": {
-    "bluebird": "*",
-    "request": "*",
-    "cheerio": "*",
-    "ws": "*",
-    "forever": "*"
+    "bluebird": "^3.3.5",
+    "cheerio": "^0.20.0",
+    "forever": "^0.15.1",
+    "request": "^2.72.0",
+    "ws": "^1.1.0"
   },
   "devDependencies": {
     "chai": "~1.8.1",

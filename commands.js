@@ -49,8 +49,17 @@ function alive(){
     )];
 }
 function listFlagCount(FLAGS){
-    console.log(FLAGS);
-    return "Not implemented yet."
+    var roomCount = {};
+    Object.keys(FLAGS).forEach(function(flag){
+        if (roomCount.hasOwnProperty(flag.room_name)){
+            roomCount[flag.room_name]++;
+        } else {
+            roomCount[flag.room_name] = 0;
+        }
+    });
+    return Object.keys(roomCount).map(function(room_name){
+        return room_name + " had " + roomCount[room_name] + " flags";
+    }).join(', ');
 }
 
 function stop(loudSpeaker){
