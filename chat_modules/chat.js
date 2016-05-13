@@ -16,7 +16,6 @@ var ITEMS = {
 };
 var noFormattingLinked = function() {
     throw new Error("There is no formatting linked.");
-
 };
 var blacklistedUsers = config.blacklistedUsers || [];
 var acceptableUsers = config.acceptableUsers || [];
