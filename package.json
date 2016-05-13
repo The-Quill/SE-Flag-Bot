@@ -12,7 +12,7 @@
   },
   "scripts": {
     "test": "istanbul cover _mocha",
-    "test_build": "istanbul cover _grunt",
+    "test_build": "istanbul cover grunt",
     "build": "grunt"
   },
   "bugs": {
@@ -31,7 +31,9 @@
     "cheerio": "^0.20.0",
     "forever": "^0.15.1",
     "request": "^2.72.0",
-    "ws": "^1.1.0"
+    "ws": "^1.1.0",
+    "grunt-cli": "^1.2.0",
+    "load-grunt-tasks": "^3.5.0"
   },
   "devDependencies": {
     "chai": "~1.8.1",
