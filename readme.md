@@ -1,6 +1,6 @@
 #SE Flag Bot
 
-[https://travis-ci.org/The-Quill/SE-Flag-Bot][![Build status](https://travis-ci.org/The-Quill/SE-Flag-Bot.svg?branch=master)]
+[![Build status](https://travis-ci.org/The-Quill/SE-Flag-Bot.svg?branch=master)](https://travis-ci.org/The-Quill/SE-Flag-Bot)
 
 ##What is this?
 
