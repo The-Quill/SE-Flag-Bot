@@ -39,7 +39,7 @@ var actions = {
             console.log("You're missing a part of that command");
             return;
         }
-        request.postAsync({
+        return request.postAsync({
             url: "http://chat." + domain + ".com/chats/" + roomId + "/messages/new",
             form: {
                 fkey: domainVars.fkey[domain],
