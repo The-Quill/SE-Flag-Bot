@@ -76,6 +76,12 @@ mainCore.start()
     mainCore.set.say(function (message){
         return botCore.actions.send(chatDomain, 39270, botPrefix + message);
     });
+    mainCore.set.specialSay(function (message){
+        return new Promise(resolve, reject){
+            console.log(message);
+            resolve();
+        });
+    });
     mainCore.set.noPrefixSay(function (message){
         return botCore.actions.send(chatDomain, 39270, message);
     });

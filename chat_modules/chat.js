@@ -37,6 +37,7 @@ var messageFormatting = {
     connection: noFormattingLinked
 };
 var say = function(){};
+var specialSay = function(){};
 var noPrefixSay = function(){};
 var reply = function(){};
 var commands = {};
@@ -48,6 +49,9 @@ var set = {
     },
     say: function(value){
         say = value;
+    },
+    specialSay: function(value){
+        specialSay = value;
     },
     noPrefixSay: function(value){
         noPrefixSay = value;
@@ -199,7 +203,7 @@ var processEvent = function(event) {
                     " stars."
                 )
                 .then(function(){
-                    noPrefixSay(
+                    return noPrefixSay(
                         "http://chat.stackexchange.com/transcript/message/" + event.message_id + "#" + event.message_id
                     );
                 });
@@ -209,11 +213,17 @@ var processEvent = function(event) {
             if (!ITEMS.flags.hasOwnProperty(event.message_id)){
                 ITEMS.flags[event.message_id] = event;
                 ITEMS.flags[event.message_id].site = "SE";
-                return say(
+                return specialSay(
                     messageFormatting.activity("A [message](http://chat.stackexchange.com/transcript/message/" + event.message_id + "#" + event.message_id + ") in ") +
                     messageFormatting.room(event) +
                     messageFormatting.activity(" was flagged.")
-                );
+                ).then(function(){
+                    return say(
+                        messageFormatting.activity("A [message](http://chat.stackexchange.com/transcript/message/" + event.message_id + "#" + event.message_id + ") in ") +
+                        messageFormatting.room(event) +
+                        messageFormatting.activity(" was flagged.")
+                    );
+                })
                 // Uncomment the line below to turn on sharing of the message
                 //say(messageFormatting.content(event));
             }
