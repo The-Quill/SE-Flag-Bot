@@ -77,7 +77,7 @@ mainCore.start()
         return botCore.actions.send(chatDomain, 39270, botPrefix + message);
     });
     mainCore.set.specialSay(function (message){
-        return new Promise(resolve, reject){
+        return new Promise(function(resolve, reject){
             console.log(message);
             resolve();
         });
