@@ -217,12 +217,13 @@ var processEvent = function(event) {
                     messageFormatting.activity("A [message](http://chat.stackexchange.com/transcript/message/" + event.message_id + "#" + event.message_id + ") in ") +
                     messageFormatting.room(event) +
                     messageFormatting.activity(" was flagged.")
-                );
-                return say(
-                    messageFormatting.activity("A [message](http://chat.stackexchange.com/transcript/message/" + event.message_id + "#" + event.message_id + ") in ") +
-                    messageFormatting.room(event) +
-                    messageFormatting.activity(" was flagged.")
-                );
+                ).then(function(){
+                    return say(
+                        messageFormatting.activity("A [message](http://chat.stackexchange.com/transcript/message/" + event.message_id + "#" + event.message_id + ") in ") +
+                        messageFormatting.room(event) +
+                        messageFormatting.activity(" was flagged.")
+                    );
+                });
                 // Uncomment the line below to turn on sharing of the message
                 //say(messageFormatting.content(event));
             }
