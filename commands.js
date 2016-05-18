@@ -121,10 +121,6 @@ function leave(domain, room_id){
         'meh',
         'why would you bother?'
     ];
-    console.log(sarcasmFactor);
-    console.log(responses.slice(sarcasmFactor)[Math.floor(
-        Math.random() * responses.slice(sarcasmFactor).length
-    )]);
     return responses.slice(sarcasmFactor)[Math.floor(
         Math.random() * responses.slice(sarcasmFactor).length
     )];
