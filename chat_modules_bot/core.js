@@ -160,7 +160,7 @@ var connectDomainRooms = function(domainMultiCase, initialRoom, rooms) {
             jar: domainVars.jars[domain]
         })
         .then(function(secondLevelResponse) {
-            if (secondLevelResponse.body.indexOf("<!DOCTYPE HTML PUBLIC") !== -1) {
+            if (secondLevelResponse.body.startsWith("<")) {
                 throw new Error("There was an issue with the response. Check your config is correct.");
             }
             url = JSON.parse(secondLevelResponse.body).url;
@@ -211,20 +211,18 @@ var domainNameFixer = function(unfixedName) {
     return name;
 };
 var start = function() {
-    var promises = Object.keys(config.room_domains).map(function(domainName) {
-        var domain = config.room_domains[domainName];
-        if (domain.rooms.length) {
-            return new Promise()
-            .then()
-            .error();
-        }
-        var domainNameFixed = domainNameFixer(domainName);
-        var firstDomainName = Object.keys(domain.rooms)[0];
-        var domainRooms = JSON.parse(JSON.stringify(domain.rooms));
-        delete domainRooms[firstDomainName];
-        return connectDomainRooms(domainNameFixed, domain.rooms[firstDomainName], domainRooms);
-    });
-    return Promise.all(promises);
+    domainName = "StackExchange";
+    var domain = config.room_domains[domainName];
+    if (domain.rooms.length) {
+        return new Promise()
+        .then()
+        .error();
+    }
+    var domainNameFixed = domainNameFixer(domainName);
+    var firstDomainName = Object.keys(domain.rooms)[0];
+    var domainRooms = JSON.parse(JSON.stringify(domain.rooms));
+    delete domainRooms[firstDomainName];
+    return connectDomainRooms(domainNameFixed, domain.rooms[firstDomainName], domainRooms);
 };
 module.exports = {
     actions: actions,
