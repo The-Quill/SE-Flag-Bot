@@ -55,7 +55,7 @@ function listFlagCount(FLAGS){
         if (roomCount.hasOwnProperty(flag.room_name)){
             roomCount[flag.room_name]++;
         } else {
-            roomCount[flag.room_name] = 0;
+            roomCount[flag.room_name] = 1;
         }
     });
     return Object.keys(roomCount).map(function(room_name){
@@ -178,7 +178,7 @@ function pull(loudSpeaker){
         if (stderr !== "") console.log("stderr: " + stderr);
         loudSpeaker("Fetching origin copy and then restarting")
         .then(function(){
-            restart(loudSpeaker);
+            forever.restart();
         });
     });
 

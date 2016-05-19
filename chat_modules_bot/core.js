@@ -211,7 +211,7 @@ var domainNameFixer = function(unfixedName) {
     return name;
 };
 var start = function() {
-    domainName = "StackExchange";
+    var domainName = "StackExchange";
     var domain = config.room_domains[domainName];
     if (domain.rooms.length) {
         return new Promise()
