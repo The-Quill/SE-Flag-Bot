@@ -22,10 +22,12 @@ var acceptableUsers = config.acceptableUsers || [];
 
 acceptableUsers = acceptableUsers.concat([
     //ID here with //comment with your name
-    '145604', // Quill
-    '24697', // PhiNotPi,
-    '175356', // Downgoat
-    '116494' // Conor O Brien
+    '145604', // Quill SE
+    '24697', // PhiNotPi SE
+    '175356', // Downgoat SE
+    '116494' // Conor O Brien SE
+    '315433' // sandwich MSE
+    '237813' // bjb MSE
 ]);
 var messageFormatting = {
     room: noFormattingLinked,
@@ -93,10 +95,16 @@ var convert = function(str) {
 };
 
 var processCommand = function(event){
-    if (String(event.room_id) != "39270"){
+    if (String(event.room_id) != "39270" && String(event.room_id) != "89"){
         return false;
     }
     if (!event.content.startsWith("@Marvin ") && !event.content.startsWith("!!/")){
+        return false;
+    }
+    if ((event.content.startsWith("@Marvin") || event.content.startsWith("!!/")) && String(event.room_id) == "89"){
+        return false;
+    }
+    if (String(event.room_id) != "89" && event.content.startsWith("@Quill")){
         return false;
     }
     if (blacklistedUsers.indexOf(String(event.user_id)) !== -1){
@@ -104,6 +112,7 @@ var processCommand = function(event){
     }
     var commandArguments = event.content
         .replace("@Marvin ", "")
+        .replace("@Quill ", "")
         .replace("!!/", "")
         .split(" ");
     var commandName = commandArguments[0];
@@ -112,9 +121,12 @@ var processCommand = function(event){
     }
     var command = commands[commandName];
     var commandArgs = commandArguments.slice(1);
-    if (limitedAccessCommands.hasOwnProperty(commandName) && acceptableUsers.indexOf(String(event.user_id)) === -1){
-        return reply("I can't let you do that.", event);
+    if (limitedAccessCommands.hasOwnProperty(commandName) && acceptableUsers.indexOf(String(event.user_id)) === -1)){
+        if (event.domain == "SE"){
+            return reply("I can't let you do that.", event);
+        }
     }
+    var speaker = (event.domain == "SE" ? say : specialSay);
     if (commands.hasOwnProperty(commandName)){
         switch (commandName){
             case "delete":
@@ -123,9 +135,9 @@ var processCommand = function(event){
                 return say(command("SE", commandArgs));
                 break;
             case "restart":
-            //case "stop":
+            case "stop":
             case "pull":
-                return command(say, commandArgs);
+                return speaker(say, commandArgs);
                 break;
             case "blacklist":
                 if (blacklistedUsers.indexOf(commandArgs[0]) > -1){
@@ -160,7 +172,7 @@ var processCommand = function(event){
                 );
                 break;
             case "listFlagCount":
-                return say(command(ITEMS.flags, commandArgs));
+                return speaker(command(ITEMS.flags, commandArgs));
                 break;
             default:
                 return say(command(commandArgs))
