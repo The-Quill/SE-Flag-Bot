@@ -26,8 +26,6 @@ acceptableUsers = acceptableUsers.concat([
     '24697', // PhiNotPi SE
     '175356', // Downgoat SE
     '116494' // Conor O Brien SE
-    '315433' // sandwich MSE
-    '237813' // bjb MSE
 ]);
 var messageFormatting = {
     room: noFormattingLinked,
