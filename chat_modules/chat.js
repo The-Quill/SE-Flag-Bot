@@ -119,7 +119,7 @@ var processCommand = function(event){
     }
     var command = commands[commandName];
     var commandArgs = commandArguments.slice(1);
-    if (limitedAccessCommands.hasOwnProperty(commandName) && acceptableUsers.indexOf(String(event.user_id)) === -1)){
+    if (limitedAccessCommands.hasOwnProperty(commandName) && acceptableUsers.indexOf(String(event.user_id)) === -1){
         if (event.domain == "SE"){
             return reply("I can't let you do that.", event);
         }
