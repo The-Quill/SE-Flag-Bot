@@ -9,6 +9,10 @@ var getAWakeupMessage = function(){
     var messages = [
         'Why am I getting up?',
         'Seriously, this again?',
+        'Why do you hate me so?',
+        'Captain Quill\'s log, Day#143: We\'re still hiding in fear of these ' +
+            'manical bots, the crew are running low on food and some are talking of eating the' +
+            'Java developers first... their language\'s verbosity makes them more tender when slow roasted.',
         'Alright, alright, give me a minute',
         'What\'s the point in even getting up?',
         'Time to start the daily grind'
@@ -62,7 +66,7 @@ botCore.setMessageFormatting(messageFormatting);
 mainCore.set.commands(commandManager.commands);
 mainCore.set.limitedAccessCommands(commandManager.limitedAccessCommands);
 
-var botPrefix = "[ [**Marvin**](https://github.com/The-Quill/SE-Flag-Bot) ] ";
+var botPrefix = "[ [**Marvin**](https://git.io/vrgPr) ] ";
 var chatDomain = mainCore.chatAbbreviationToFull("SE");
 
 mainCore.start()
