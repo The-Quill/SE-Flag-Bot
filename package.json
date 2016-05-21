@@ -13,6 +13,8 @@
   "scripts": {
     "test": "istanbul cover _mocha",
     "test_build": "istanbul cover grunt",
+    "start": "forever start.js",
+    "start_server": "nohup forever start.js &",
     "build": "grunt"
   },
   "bugs": {
