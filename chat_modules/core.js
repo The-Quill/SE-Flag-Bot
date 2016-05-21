@@ -106,7 +106,10 @@ var openWebSocket = function(url, time, domain) {
             var keys = Object.keys(message);
             keys.forEach(function(key) {
                 if (message[key].e) { // eslint-disable-line id-length
-                    message[key].e.forEach(ChatHandler.processEvent); // eslint-disable-line id-length
+                    message[key].e.forEach(function(event){
+                        event.domain = domain;
+                        ChatHandler.processEvent(event);
+                    }); // eslint-disable-line id-length
                 }
             });
         });
