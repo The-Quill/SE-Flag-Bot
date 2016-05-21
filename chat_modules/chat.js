@@ -93,20 +93,27 @@ var convert = function(str) {
 };
 
 var processCommand = function(event){
-    if (String(event.room_id) != "39270" && String(event.room_id) != "89"){
-        return false;
+    console.log();
+    if (event.domain == "stackexchange"){
+        if (String(event.room_id) != "39270"){
+            return false;
+        }
+        if (!event.content.startsWith("@Marvin") && !event.content.startsWith("!!/")){
+            return false;
+        }
+    } else if (event.domain == "meta.stackexchange"){
+        if (String(event.room_id) != "89"){
+            return false;
+        }
+        if (!event.content.startsWith("@Quill")){
+            return false;
+        }
     }
-    if (!event.content.startsWith("@Marvin ") && !event.content.startsWith("!!/")){
-        return false;
-    }
-    if ((event.content.startsWith("@Marvin") || event.content.startsWith("!!/")) && String(event.room_id) == "89"){
-        return false;
-    }
-    if (String(event.room_id) != "89" && event.content.startsWith("@Quill")){
-        return false;
-    }
+
     if (blacklistedUsers.indexOf(String(event.user_id)) !== -1){
-        return reply("I can't let you do that.", event);
+        if (event.domain != "meta.stackexchange"){
+            return reply("I can't let you do that.", event);
+        }
     }
     var commandArguments = event.content
         .replace("@Marvin ", "")
@@ -120,11 +127,13 @@ var processCommand = function(event){
     var command = commands[commandName];
     var commandArgs = commandArguments.slice(1);
     if (limitedAccessCommands.hasOwnProperty(commandName) && acceptableUsers.indexOf(String(event.user_id)) === -1){
-        if (event.domain == "SE"){
+        if (event.domain == "stackexchange"){
             return reply("I can't let you do that.", event);
         }
     }
-    var speaker = (event.domain == "SE" ? say : specialSay);
+    var speaker = function(){
+        return event.domain == "SE" ? say.apply(null, arguments) : specialSay.apply(null, arguments)
+    };
     if (commands.hasOwnProperty(commandName)){
         switch (commandName){
             case "delete":
@@ -178,7 +187,7 @@ var processCommand = function(event){
 
         }
     } else {
-        return say("Command " + commandName + " not recognised.")
+        return reply("Command " + commandName + " not recognised.")
     }
 }
 
