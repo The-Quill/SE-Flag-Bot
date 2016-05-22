@@ -4,7 +4,13 @@
 
 ##What is this?
 
-A bot that posts flagged messages
+A bot that posts flagged messages.
+
+#Notice:
+
+I am no longer in active development of this project, nor do I run the bot on the network anymore.
+
+I will provide feedback and assistance if help is needed, otherwise, have fun.
 
 ---
 ##How to get started
