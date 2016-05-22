@@ -22,10 +22,6 @@ var acceptableUsers = config.acceptableUsers || [];
 
 acceptableUsers = acceptableUsers.concat([
     //ID here with //comment with your name
-    '145604', // Quill SE
-    '24697', // PhiNotPi SE
-    '175356', // Downgoat SE
-    '116494' // Conor O Brien SE
 ]);
 var messageFormatting = {
     room: noFormattingLinked,
@@ -37,7 +33,6 @@ var messageFormatting = {
     connection: noFormattingLinked
 };
 var say = function(){};
-var specialSay = function(){};
 var noPrefixSay = function(){};
 var reply = function(){};
 var commands = {};
@@ -49,9 +44,6 @@ var set = {
     },
     say: function(value){
         say = value;
-    },
-    specialSay: function(value){
-        specialSay = value;
     },
     noPrefixSay: function(value){
         noPrefixSay = value;
@@ -131,9 +123,6 @@ var processCommand = function(event){
             return reply("I can't let you do that.", event);
         }
     }
-    var speaker = function(){
-        return event.domain == "SE" ? say.apply(null, arguments) : specialSay.apply(null, arguments)
-    };
     if (commands.hasOwnProperty(commandName)){
         switch (commandName){
             case "delete":
@@ -144,7 +133,7 @@ var processCommand = function(event){
             case "restart":
             case "stop":
             case "pull":
-                return speaker(say, commandArgs);
+                return say(say, commandArgs);
                 break;
             case "blacklist":
                 if (blacklistedUsers.indexOf(commandArgs[0]) > -1){
@@ -179,7 +168,7 @@ var processCommand = function(event){
                 );
                 break;
             case "listFlagCount":
-                return speaker(command(ITEMS.flags, commandArgs));
+                return say(command(ITEMS.flags, commandArgs));
                 break;
             default:
                 return say(command(commandArgs))
@@ -232,17 +221,11 @@ var processEvent = function(event) {
             if (!ITEMS.flags.hasOwnProperty(event.message_id)){
                 ITEMS.flags[event.message_id] = event;
                 ITEMS.flags[event.message_id].site = "SE";
-                specialSay(
+                return say(
                     messageFormatting.activity("A [message](http://chat.stackexchange.com/transcript/message/" + event.message_id + "#" + event.message_id + ") in ") +
                     messageFormatting.room(event) +
                     messageFormatting.activity(" was flagged.")
-                ).then(function(){
-                    return say(
-                        messageFormatting.activity("A [message](http://chat.stackexchange.com/transcript/message/" + event.message_id + "#" + event.message_id + ") in ") +
-                        messageFormatting.room(event) +
-                        messageFormatting.activity(" was flagged.")
-                    );
-                });
+                );
                 // Uncomment the line below to turn on sharing of the message
                 //say(messageFormatting.content(event));
             }

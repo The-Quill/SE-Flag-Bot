@@ -1,0 +1,1 @@
+return mainCore.actions.send(mainCore.chatAbbreviationToFull("MSE"), 89, "[ [**Quill**](https://github.com/The-Quill/SE-Flag-Bot) ] " + message);

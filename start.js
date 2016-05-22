@@ -2,20 +2,16 @@ var botCore = require('./chat_modules_bot/core');
 var mainCore = require('./chat_modules/core');
 var commandManager = require('./commands');
 
+var siteIdToPostTo = 1;
+var chatDomainToPostTo = "SE"; // in list SE, SO and MSE
+var botPrefix = "< [**SE-Flag-Bot**](https://git.io/vrgPr) > ";
+
 commandManager.setCore(mainCore);
 commandManager.setBotCore(botCore);
 
 var getAWakeupMessage = function(){
     var messages = [
-        'Why am I getting up?',
-        'Seriously, this again?',
-        'Why do you hate me so?',
-        'Captain Quill\'s log, Day#143: We\'re still hiding in fear of these ' +
-            'manical bots, the crew are running low on food and some are talking of eating the' +
-            'Java developers first... their language\'s verbosity makes them more tender when slow roasted.',
-        'Alright, alright, give me a minute',
-        'What\'s the point in even getting up?',
-        'Time to start the daily grind'
+        'Hello'
     ];
     return messages[Math.floor(Math.random() * messages.length)];
 };
@@ -66,8 +62,7 @@ botCore.setMessageFormatting(messageFormatting);
 mainCore.set.commands(commandManager.commands);
 mainCore.set.limitedAccessCommands(commandManager.limitedAccessCommands);
 
-var botPrefix = "[ [**Marvin**](https://git.io/vrgPr) ] ";
-var chatDomain = mainCore.chatAbbreviationToFull("SE");
+var chatDomain = mainCore.chatAbbreviationToFull(chatDomainToPostTo);
 
 mainCore.start()
 .then(function() {
@@ -76,20 +71,14 @@ mainCore.start()
 })
 .then(function(){
     console.log("Bot core started");
-    botCore.actions.send(chatDomain, 39270, botPrefix + getAWakeupMessage());
+    botCore.actions.send(chatDomain, siteIdToPostTo, botPrefix + getAWakeupMessage());
     mainCore.set.say(function (message){
-        return botCore.actions.send(chatDomain, 39270, botPrefix + message);
-    });
-    mainCore.set.specialSay(function (message){
-        return new Promise(function(resolve, reject){
-            console.log(message);
-            resolve();
-        });
+        return botCore.actions.send(chatDomain, siteIdToPostTo, botPrefix + message);
     });
     mainCore.set.noPrefixSay(function (message){
-        return botCore.actions.send(chatDomain, 39270, message);
+        return botCore.actions.send(chatDomain, siteIdToPostTo, message);
     });
     mainCore.set.reply(function (message, event){
-        return botCore.actions.send(chatDomain, 39270, ":" + event.message_id + " " + message);
+        return botCore.actions.send(chatDomain, siteIdToPostTo, ":" + event.message_id + " " + message);
     });
 });
